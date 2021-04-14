@@ -39,13 +39,15 @@ class CoursController extends AbstractController
      */
     public function new(Request $request ): Response
     {
-        $cour = new Cours();
+        $cour = new Cours();        
         $form = $this->createForm(CoursType::class, $cour);
         $form->handleRequest($request);
-        
+        $cat = new Categorie();
+        $categories = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
         if ($form->isSubmitted() && $form->isValid()) {
-            $desc = $this->getDoctrine()->getRepository(Categorie::class)->findOneBy(['idCatégorie' => $form->get('descriptionCat')->getData()]);
-            $cour->setDescriptionCat($desc->getDescription());
+            
+            $cat=$this->getDoctrine()->getRepository(Categorie::class)->findOneBy(['description'=>$request->request->get('categorie')]);
+            $cour = $cour->setCategorieId($cat->getIdCatégorie());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($cour);
             $entityManager->flush();
@@ -56,6 +58,7 @@ class CoursController extends AbstractController
         return $this->render('cours/new.html.twig', [
             'cour' => $cour,
             'form' => $form->createView(),
+            'categories' => $categories
         ]);
     }
 

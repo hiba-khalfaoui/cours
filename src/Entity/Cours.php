@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Cours
  *
- * @ORM\Table(name="cours", indexes={@ORM\Index(name="id_formation", columns={"formation_id"})})
+ * @ORM\Table(name="cours", indexes={@ORM\Index(name="IDX_FDCA8C9CBCF5E72D", columns={"categorie_id"}), @ORM\Index(name="id_formation", columns={"formation_id"})})
  * @ORM\Entity
  */
 class Cours
@@ -24,30 +24,37 @@ class Cours
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=1024, nullable=false)
+     * @ORM\Column(name="titre", type="string", length=1024, nullable=true)
      */
     private $titre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fichier", type="string", length=1024, nullable=false)
+     * @ORM\Column(name="fichier", type="string", length=1024, nullable=true)
      */
     private $fichier;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="formation_id", type="integer", nullable=false)
+     * @ORM\Column(name="formation_id", type="integer", nullable=true)
      */
     private $formationId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Description_cat", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Description_cat", type="string", length=255, nullable=true)
      */
     private $descriptionCat;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="categorie_id", type="integer", nullable=true)
+     */
+    private $categorieId;
 
     public function getId(): ?int
     {
@@ -98,6 +105,18 @@ class Cours
     public function setDescriptionCat(string $descriptionCat): self
     {
         $this->descriptionCat = $descriptionCat;
+
+        return $this;
+    }
+
+    public function getCategorieId(): ?int
+    {
+        return $this->categorieId;
+    }
+
+    public function setCategorieId(?int $categorieId): self
+    {
+        $this->categorieId = $categorieId;
 
         return $this;
     }

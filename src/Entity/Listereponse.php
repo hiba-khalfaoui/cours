@@ -29,16 +29,6 @@ class Listereponse
     private $iduser;
 
     /**
-     * @var \Question
-     *
-     * @ORM\ManyToOne(targetEntity="Question")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idQuestion", referencedColumnName="id")
-     * })
-     */
-    private $idquestion;
-
-    /**
      * @var \Reponse
      *
      * @ORM\ManyToOne(targetEntity="Reponse")
@@ -47,6 +37,16 @@ class Listereponse
      * })
      */
     private $idreponse;
+
+    /**
+     * @var \Question
+     *
+     * @ORM\ManyToOne(targetEntity="Question")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idQuestion", referencedColumnName="id")
+     * })
+     */
+    private $idquestion;
 
     public function getId(): ?int
     {
@@ -65,18 +65,6 @@ class Listereponse
         return $this;
     }
 
-    public function getIdquestion(): ?Question
-    {
-        return $this->idquestion;
-    }
-
-    public function setIdquestion(?Question $idquestion): self
-    {
-        $this->idquestion = $idquestion;
-
-        return $this;
-    }
-
     public function getIdreponse(): ?Reponse
     {
         return $this->idreponse;
@@ -85,6 +73,18 @@ class Listereponse
     public function setIdreponse(?Reponse $idreponse): self
     {
         $this->idreponse = $idreponse;
+
+        return $this;
+    }
+
+    public function getIdquestion(): ?Question
+    {
+        return $this->idquestion;
+    }
+
+    public function setIdquestion(?Question $idquestion): self
+    {
+        $this->idquestion = $idquestion;
 
         return $this;
     }

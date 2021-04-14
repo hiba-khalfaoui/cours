@@ -15,12 +15,7 @@ class CoursType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('descriptionCat',ChoiceType::class, [
-                'choices'  => [
-                    'gtrefrdesujhg' => 1,
-                    'thgr' => 4,
-                ],
-            ])
+           
             ->add('formationId',ChoiceType::class, [
                 'choices'  => [
                     'PHP' => 4,

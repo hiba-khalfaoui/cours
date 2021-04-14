@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210410203840 extends AbstractMigration
+final class Version20210414113530 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,15 +20,12 @@ final class Version20210410203840 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE cours ADD formation_id INT DEFAULT NULL');
-        $this->addSql('CREATE INDEX IDX_FDCA8C9C5200282E ON cours (formation_id)');
+        $this->addSql('ALTER TABLE cours CHANGE titre titre VARCHAR(1024) DEFAULT NULL, CHANGE Description_cat Description_cat VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE cours DROP FOREIGN KEY FK_FDCA8C9C5200282E');
-        $this->addSql('DROP INDEX IDX_FDCA8C9C5200282E ON cours');
-        $this->addSql('ALTER TABLE cours DROP formation_id');
+        $this->addSql('ALTER TABLE cours CHANGE titre titre VARCHAR(1024) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, CHANGE Description_cat Description_cat VARCHAR(255) CHARACTER SET utf8 DEFAULT NULL COLLATE `utf8_general_ci`');
     }
 }

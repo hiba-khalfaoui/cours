@@ -6,38 +6,58 @@
 	</div>
 	<!-- /.card-header -->
 	<!-- form start -->
-	
-		<div class="card-body">
-			<div class="form-group">
-				<label for="exampleInputEmail1">Titre</label>
-				{{form_widget(form.titre, {'attr' : {'class' : 'form-control' }})}}
-			</div>
-			<div class="form-group">
-				<label for="exampleInputPassword1">Formation</label>
-				{{form_widget(form.formationId, {'attr' : {'class' : 'form-control' }})}}
-			</div>
 
-			<div class="form-group">
-				<label for="exampleInputPassword1">Catégorie</label>
-				{{form_widget(form.descriptionCat, {'attr' : {'class' : 'form-control' }})}}
-			</div>
-			<div class="form-group">
-				<label for="exampleInputFile">Fichier</label>
-				<div class="input-group">
-					
-						{{form_widget(form.fichier, {'attr' : {'class' : 'form-control' }})}}
-						
-					
-				</div>
-			</div>
-
+	<div class="card-body">
+		<div class="form-group">
+			<label for="exampleInputEmail1">Titre</label>
+			{{form_widget(form.titre, {'attr' : {'class' : 'form-control' }})}}
 		</div>
-		<!-- /.card-body -->
-
-		<div class="card-footer">
-			<button type="submit" class="btn btn-primary">Submit</button>
+		<div class="form-group">
+			<label for="exampleInputPassword1">Formation</label>
+			{{form_widget(form.formationId, {'attr' : {'class' : 'form-control' }})}}
 		</div>
-	
+
+		<div class="form-group">
+			<label for="">Catégorie</label>
+			<select class="form-control" name="categorie">
+				{% for categorie in categories %}
+					<option>{{categorie.description}}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputFile">Fichier</label>
+			<div class="input-group">
+
+				{{form_widget(form.fichier, {'attr' : {'class' : 'form-control' }})}}
+
+
+			</div>
+		</div>
+
+	</div>
+	<!-- /.card-body -->
+
+	<div class="card-footer">
+		<button type="submit" class="btn btn-primary" onclick="f()">Envoyer</button>
+	</div>
+
 </div>
-<button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+
+<script>
+	 function f() {
+		var titre = document.getElementById('cours_titre');
+		if (titre.value == "" ) {
+			window.alert("Le titre ne doit pas étre vide");
+			 return 
+		}
+
+		var fichier = document.getElementById('cours_fichier');
+
+		if(fichier.value == ""){
+			window.alert("veuillez choisir un fichier");	
+			return
+		}
+	}
+</script>

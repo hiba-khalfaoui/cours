@@ -20,11 +20,11 @@ class Categorie
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idCatégorie;
-
+    
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="Description", type="string", length=1027, nullable=false)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -38,7 +38,7 @@ class Categorie
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
